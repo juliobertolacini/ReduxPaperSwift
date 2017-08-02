@@ -1,0 +1,6 @@
+framework module Pods_ReduxPaperScissors {
+  umbrella header "Pods-ReduxPaperScissors-umbrella.h"
+
+  export *
+  module * { export * }
+}
