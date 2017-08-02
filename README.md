@@ -11,7 +11,7 @@ Uma das grandes promessas do Redux é criar restrições que incentivam um desen
 
 Esse artigo descreve uma abordagem simples para começar a entender este novo padrão.
 
-### Requisitos para a implementação
+## Requisitos para a implementação
 - Nível básico na construção de aplicações em iOS (Swift + Xcode).
 - Conhecimento do padrão de projeto Observer.
 - Saber utilizar o sistema de dependencias CocoaPods.
