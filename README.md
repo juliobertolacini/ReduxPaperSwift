@@ -22,7 +22,7 @@ Esse artigo descreve uma abordagem simples para começar a entender este novo pa
 - **Actions:** São objetos simples que descrevem o que o sistema pode fazer. Esses objetos podem carregar informações ou não, dependendo do caso. Eles são despachados pela camada View como intenções de alterar o estado da aplicação.
 - **Reducers:** É aqui que desenvolvemos a lógica principal da aplicação. Reducers devem ser funções puras[link], sem efeitos colaterais [link] e devem ser síncronos. São os únicos objetos que podem criar um novo estado para a aplicação. Eles recebem uma ação e o estado atual, e retornam um novo estado.
 
-![imagem do fluxo](/Article\ Images/unidirectional_data_flow.png)
+![imagem do fluxo](/Article Images/unidirectional_data_flow.png)
 
 Vejam que o fluxo unidirecional acontece quando a View despacha uma Action. Essa Action é passada para o Reducer correspondente, então este Reducer gera um novo State de acordo com a Action passada, e o State é passado de volta para a View para que esta seja alterada.
 
