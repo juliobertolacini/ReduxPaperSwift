@@ -22,7 +22,7 @@ Esse artigo descreve uma abordagem simples para começar a entender este novo pa
 - **Actions:** São objetos simples que descrevem o que o sistema pode fazer. Esses objetos podem carregar informações ou não, dependendo do caso. Eles são despachados pela camada View como intenções de alterar o estado da aplicação.
 - **Reducers:** É aqui que desenvolvemos a lógica principal da aplicação. Reducers devem ser funções puras[link], sem efeitos colaterais [link] e devem ser síncronos. São os únicos objetos que podem criar um novo estado para a aplicação. Eles recebem uma ação e o estado atual, e retornam um novo estado.
 
-![imagem do fluxo](/Article Images/unidirectional_data_flow.png)
+![imagem do fluxo](/ArticleImages/unidirectional_data_flow.png)
 
 Vejam que o fluxo unidirecional acontece quando a View despacha uma Action. Essa Action é passada para o Reducer correspondente, então este Reducer gera um novo State de acordo com a Action passada, e o State é passado de volta para a View para que esta seja alterada.
 
@@ -33,11 +33,11 @@ Minha abordagem para começarmos a aprender Redux é construir uma aplicação d
 
 Começamos então fazendo um esboço de como deve ser a aplicação. Para simplificar, a aplicação deverá funcionar em um único ViewController, contendo 3 botões na parte inferior (Pedra, Papel e Tesoura), 1 campo de mensagem na parte superior e 2 placeholders para mostrar quando um jogador já realizou sua jogada e no final para revelar a arma dos jogadores.
 
-![imagem da view](initial_sketch.png)
+![imagem da view](/ArticleImages/initial_sketch.png)
 
 Para começar o desenvolvimento propus um caso de uso em que o Jogador1 escolhe **Tesousa** e o Jogador2 escolhe **Pedra**, resultando na vitória do Jogador2. Esse fluxo aconteceria da seguinte forma:
 
-![imagem da view](use_case_sketch.png)
+![imagem da view](/ArticleImages/use_case_sketch.png)
 
 ## Desenvolvimento
 
