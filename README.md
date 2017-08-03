@@ -43,7 +43,7 @@ Para começar o desenvolvimento propus um caso de uso em que o Jogador1 escolhe 
 
 Criamos um novo projeto no Xcode do tipo "Single view application" e habilitamos "Include Unit Tests" para podermos fazer um teste usando os conceitos de Redux.
 
-Instale o `pod ["ReSwift"](https://github.com/ReSwift/ReSwift)`, utilizando [CocoaPods](https://cocoapods.org/).
+Instale o pod ["ReSwift"](https://github.com/ReSwift/ReSwift), utilizando [CocoaPods](https://cocoapods.org/).
 
 Em seguida vamos criar o primeiro componente, o **State**. Observando as imagens acima, conseguimos perceber claramente as partes do app que irão se alterar durante a execução, cada parte desta consiste no estado da aplicação. Criei então um arquivo `State.swift` e dentro dele coloquei as estruturas que formam o estado, juntamente com possíveis estruturas de modelo que formam o conceito da aplicação. É importante salientar que as estruturas devem ser imutáveis para que o Redux funcione, só assim garantimos que o State seja alterado apenas pelos Reducers, por isso utilizei Structs e Enums ao invés de Classes:
 
