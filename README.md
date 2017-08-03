@@ -20,7 +20,7 @@ Esse artigo descreve uma abordagem simples para começar a entender este novo pa
 
 - **State:** Representa o estado da aplicação. Deve existir apenas um, podendo este ser dividido em sub-estados.
 - **Actions:** São objetos simples que descrevem o que o sistema pode fazer. Esses objetos podem carregar informações ou não, dependendo do caso. Eles são despachados pela camada View como intenções de alterar o estado da aplicação.
-- **Reducers:** É aqui que desenvolvemos a lógica principal da aplicação. Reducers devem ser funções puras[link], sem efeitos colaterais [link] e devem ser síncronos. São os únicos objetos que podem criar um novo estado para a aplicação. Eles recebem uma ação e o estado atual, e retornam um novo estado.
+- **Reducers:** É aqui que desenvolvemos a lógica principal da aplicação. Reducers devem ser funções puras, sem efeitos colaterais e devem ser síncronos. São os únicos objetos que podem criar um novo estado para a aplicação. Eles recebem uma ação e o estado atual, e retornam um novo estado.
 
 ![imagem do fluxo](/ArticleImages/unidirectional_data_flow.png)
 
