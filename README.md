@@ -9,12 +9,12 @@ Ela é uma alternativa a outros padrões arquiteturais como, por exemplo: MVC, M
 ## Vantagens
 Uma das grandes promessas do Redux é criar restrições que incentivam um desenvolvimento de software mais organizado e mais fácil de testar, assim, por esses motivos, acaba diminuindo a complexidade na fase de desenvolvimento além de oferecer facilidades na manutenção do estado da aplicação e depuração avançada.
 
-Esse artigo descreve uma abordagem simples para começar a entender este novo padrão.
+Este artigo descreve uma abordagem simples para começar a entender este novo padrão.
 
 ## Requisitos para a implementação
 - Nível básico na construção de aplicações em iOS (Swift + Xcode).
 - Conhecimento do padrão de projeto Observer.
-- Saber utilizar o sistema de dependencias CocoaPods.
+- Saber utilizar o sistema de dependências CocoaPods.
 
 ## Componentes
 
@@ -26,7 +26,7 @@ Esse artigo descreve uma abordagem simples para começar a entender este novo pa
 
 Vejam que o fluxo unidirecional acontece quando a View despacha uma Action. Essa Action é passada para o Reducer correspondente, então este Reducer gera um novo State de acordo com a Action passada, e o State é passado de volta para a View para que esta seja alterada.
 
-- **Store:** É um dos componentes mais importantes dessa implementação. É ela que agrega todos os componentes citados acima e faz o fluxo funcionar. A View despacha uma nova Action para a Store. A Store então, passa essa Action para o Reducer junto com o State atual e então recebe de volta o novo State do Reducer. A View é avisada sempre que um novo State é criado, isso é possível pela implementação do padrão de projeto **Observer** que permite que a View vire "assinante" da Store, para ser notificada.
+- **Store:** É um dos componentes mais importantes dessa implementação. É ela que agrega todos os componentes citados acima e faz o fluxo funcionar. A View despacha uma nova Action para a Store. A Store então, passa essa Action para o Reducer junto com o State atual e então recebe de volta o novo State do Reducer. A View é avisada sempre que um novo State é criado, isso é possível pela implementação do padrão de projeto **Observer** que permite que a View se torne "assinante" da Store, para ser notificada.
 
 ## Vamos começar
 Minha abordagem para começarmos a aprender Redux é construir uma aplicação de exemplo - um jogo de "Pedra, Papel e Tesoura" -  utilizando uma biblioteca chamada ReSwift que implementa os conceitos dessa arquitetura em Swift.
