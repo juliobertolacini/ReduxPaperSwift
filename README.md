@@ -1,51 +1,56 @@
 # ReduxPaperSwift
-Uma simples abordagem para aprender os primórdios de Redux em Swift.
 
-## Introdução
-Redux é a implementação de um padrão arquitetural de software que prioriza o fluxo de dados unidirecional.
-Foi criada a partir da arquitetura Flux (desenvolvida pelo Facebook), vem crescendo bastante no desenvolvimento de aplicações e promete grandes vantagens na sua utilização.
-Ela é uma alternativa a outros padrões arquiteturais como, por exemplo: MVC, MVVM, Viper e CleanSwift.
+A simple approach to learning the beginnings of Redux in Swift.
+[Click here to change the language of this article to Portuguese.](README-PT.md)
 
-## Vantagens
-Uma das grandes promessas do Redux é criar restrições que incentivam um desenvolvimento de software mais organizado e mais fácil de testar, assim, por esses motivos, acaba diminuindo a complexidade na fase de desenvolvimento além de oferecer facilidades na manutenção do estado da aplicação e depuração avançada.
+## Introduction
 
-Este artigo descreve uma abordagem simples para começar a entender este novo padrão.
+Redux is the implementation of an architectural software pattern that prioritizes unidirectional data flow.
+Created from the Flux architecture (developed by Facebook), it has grown considerably in the development of applications and promises great advantages in its use.
+It is an alternative to other architectural patterns such as: MVC, MVVM and Viper.
 
-## Requisitos para a implementação
-- Nível básico na construção de aplicações em iOS (Swift + Xcode).
-- Conhecimento do padrão de projeto Observer.
-- Saber utilizar o sistema de dependências CocoaPods.
+## Benefits
 
-## Componentes
+One of the great promises of Redux is to create constraints that encourage a more organized software development and easier to test, so for these reasons, ends up reducing the complexity in the development phase as well as offering facilities in maintaining the application state and advanced debugging.
 
-- **State:** Representa o estado da aplicação. Deve existir apenas um, podendo este ser dividido em sub-estados.
-- **Actions:** São objetos simples que descrevem o que o sistema pode fazer. Esses objetos podem carregar informações ou não, dependendo do caso. Eles são despachados pela camada View como intenções de alterar o estado da aplicação.
-- **Reducers:** É aqui que desenvolvemos a lógica principal da aplicação. Reducers devem ser funções puras, sem efeitos colaterais e devem ser síncronos. São os únicos objetos que podem criar um novo estado para a aplicação. Eles recebem uma ação e o estado atual, e retornam um novo estado.
+This article describes a simple approach to beginning to understand this new pattern.
 
-![imagem do fluxo](/ArticleImages/unidirectional_data_flow.png)
+## Requirements for implementation
 
-Vejam que o fluxo unidirecional acontece quando a View despacha uma Action. Essa Action é passada para o Reducer correspondente, então este Reducer gera um novo State de acordo com a Action passada, e o State é passado de volta para a View para que esta seja alterada.
+- Basic level in building applications on iOS (Swift + Xcode).
+- Knowledge of [Observer](https://en.wikipedia.org/wiki/Observer_pattern) pattern.
+- Know how to use the [CocoaPods](https://cocoapods.org/) dependency system.
 
-- **Store:** É um dos componentes mais importantes dessa implementação. É ela que agrega todos os componentes citados acima e faz o fluxo funcionar. A View despacha uma nova Action para a Store. A Store então, passa essa Action para o Reducer junto com o State atual e então recebe de volta o novo State do Reducer. A View é avisada sempre que um novo State é criado, isso é possível pela implementação do padrão de projeto **Observer** que permite que a View se torne "assinante" da Store, para ser notificada.
+## Components
 
-## Vamos começar
-Minha abordagem para começarmos a aprender Redux é construir uma aplicação de exemplo - um jogo de "Pedra, Papel e Tesoura" -  utilizando uma biblioteca chamada ReSwift que implementa os conceitos dessa arquitetura em Swift.
+- **State:** Represents the state of the application. There must be only one, which can be divided into sub-states.
+- **Actions:** These are simple objects that describe what the system can do. These objects can carry information or not, depending on the case. They are dispatched by the View layer as intentions to change the state of the application.
+- **Reducers:** This is where we develop the main logic of the application. Reducers must be pure functions with no side effects and must be synchronous. They are the only objects that can create a new state for the application. They are given an action and the current state, and they return a new state.
 
-Começamos então fazendo um esboço de como deve ser a aplicação. Para simplificar, a aplicação deverá funcionar em um único ViewController, contendo 3 botões na parte inferior (Pedra, Papel e Tesoura), 1 campo de mensagem na parte superior e 2 placeholders para mostrar quando um jogador já realizou sua jogada e no final para revelar a arma dos jogadores.
+![data_flow_image](/ArticleImages/unidirectional_data_flow.png)
 
-![imagem da view](/ArticleImages/initial_sketch.png)
+Notice that the unidirectional flow happens when the View dispatches an Action. This Action is passed to the corresponding Reducer, so this Reducer generates a new State according to the previous Action, and the State is passed back to the View so that it is changed.
 
-Para começar o desenvolvimento propus um caso de uso em que o Jogador1 escolhe **Tesousa** e o Jogador2 escolhe **Pedra**, resultando na vitória do Jogador2. Esse fluxo aconteceria da seguinte forma:
+- **Store:** It is one of the most important components of this implementation. It is what aggregates all the components mentioned above and makes the flow work. View dispatches a new Action to the Store. The Store then passes this Action to Reducer along with the current State and then receives the Reducer's new State back. The View is warned whenever a new State is created, this is possible by implementing the **Observer** design pattern that allows View to become a "subscriber" of the Store to be notified.
 
-![imagem da view](/ArticleImages/use_case_sketch.png)
+## Let's start
+My approach to begin to learn Redux is to build a sample application - a "Stone, Paper and Scissors" game - using a library called ReSwift that implements the concepts of this architecture in Swift.
 
-## Desenvolvimento
+We begin by sketching what the application should look like. For simplicity, the application should work on a single ViewController, containing 3 buttons at the bottom (Stone, Paper and Scissors), 1 message field at the top, and 2 placeholders to show when a player has already made his move and at the end to reveal the weapons of the players.
 
-Criamos um novo projeto no Xcode do tipo "Single view application" e habilitamos "Include Unit Tests" para podermos fazer um teste usando os conceitos de Redux.
+![initial_sketch](/ArticleImages/initial_sketch.png)
 
-Instale o pod ["ReSwift"](https://github.com/ReSwift/ReSwift), utilizando [CocoaPods](https://cocoapods.org/).
+To start the development I proposed a use case in which Player1 chooses **Scissors** and Player2 chooses **Stone**, resulting in Player2's victory. This flow would happen as follows:
 
-Em seguida vamos criar o primeiro componente, o **State**. Observando as imagens acima, conseguimos perceber claramente as partes do app que irão se alterar durante a execução, cada parte desta consiste no estado da aplicação. Criei então um arquivo `State.swift` e dentro dele coloquei as estruturas que formam o estado, juntamente com possíveis estruturas de modelo que formam o conceito da aplicação. É importante salientar que as estruturas devem ser imutáveis para que o Redux funcione, só assim garantimos que o State seja alterado apenas pelos Reducers, por isso utilizei Structs e Enums ao invés de Classes:
+![use_case_sketch](/ArticleImages/use_case_sketch.png)
+
+## Development
+
+Create a new "Single view application" project in Xcode and enable "Include Unit Tests" to be able to make a test using the concepts of Redux.
+
+Install the ["ReSwift"](https://github.com/ReSwift/ReSwift) pod using [CocoaPods](https://cocoapods.org/).
+
+Next we will create the first component, the **State**. Looking at the images above, we can see clearly the parts of the app that will change during execution, each part of which consists of the state of the application. I then created a `State.swift` file and placed the state-forming structures inside it, along with possible template structures that form the concept of the application. It is important to point out that the structures must be immutable so that Redux works, only then we ensure that the State is changed exclusively by the Reducers, so I used Structs and Enums instead of Classes:
 
 ``` swift
 import ReSwift
@@ -113,7 +118,7 @@ enum Result {
 }
 ```
 
-Agora vamos criar uma Action, que será a descrição de uma ação que tem intenção de alterar o State. Neste caso temos apenas uma, ChooseWeaponAction, que é disparada quando cada jogador escolhe uma arma:
+Now let's create an Action, which will be the description of an action that intends to change the State. In this case we have only one, ChooseWeaponAction, which is triggered when each player chooses a weapon:
 
 ``` swift
 import ReSwift
@@ -126,7 +131,7 @@ struct ChooseWeaponAction: Action {
 }
 ```
 
-Por último vamos construir o Reducer, aqui nós filtramos a Action criada, pegamos o State atual da aplicação e geramos um novo State baseado na lógica que desenvolveremos com as informações contidas na Action:
+Finally we shall build the Reducer. Here we filter the Action created, we take the current state of the application and generate a new State based on the logic that we will develop with the information contained in Action:
 
 
 ``` swift
@@ -215,9 +220,9 @@ func appReducer(action: Action, state: AppState?) -> AppState {
 }
 ```
 
-## Teste
+## Test
 
-Pronto, simples assim, nós implementamos um padrão Redux com fluxo unidirecional. Para mostrar a facilidade de testar esse tipo de arquitetura, construi esta classe de XCTest que testa lógicas da aplicação sem mesmo termos construído a UI (View).
+Done, simple like that, we've implemented a Redux pattern with unidirectional flow. To show the ease of testing this type of architecture, I built this XCTest class that tests application logic without even having built a UI Layer (View).
 
 
 ``` swift
@@ -260,9 +265,9 @@ class ReduxPaperSwiftTests: XCTestCase {
 }
 ```
 
-## Finalizando
+## Finishing
 
-Para finalizar, criei um ViewController com as características mostradas do desenho de esboço, e fiz esse ViewController se tornar um "assinante" da Store, podendo assim executar uma mudança nas views sempre que o State mudar. Isso acontece com a implementação do protocolo StoreSubscriber:
+Finally, I created a ViewController with the characteristics shown in the sketch drawing, and made this ViewController become a "subscriber" of the Store, so I can perform a change in the views whenever the State changes. This happens with the implementation of the StoreSubscriber protocol:
 
 ``` swift
 import UIKit
@@ -306,10 +311,12 @@ class ViewController: UIViewController, StoreSubscriber {
 }
 ```
 
-## Créditos
+## Credits
+
 - [Redux](http://redux.js.org/)
 - [ReSwift](https://github.com/ReSwift/ReSwift)
 
 
-## Para se aprofundar no assunto
-- [Tutorial de ReSwift do site Ray Wenderlich](https://www.raywenderlich.com/155815/reswift-tutorial-memory-game-app)
+## To dig deeper into the subject:
+
+- [Ray Wenderlich's ReSwift Tutorial](https://www.raywenderlich.com/155815/reswift-tutorial-memory-game-app)
