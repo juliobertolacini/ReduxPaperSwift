@@ -1,6 +1,7 @@
 # ReduxPaperSwift
 
 A simple approach to learning the beginnings of Redux in Swift.
+
 [Click here to change the language of this article to Portuguese.](README-PT.md)
 
 ## Introduction
