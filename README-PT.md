@@ -1,7 +1,7 @@
 # ReduxPaperSwift
 Uma simples abordagem para aprender os primórdios de Redux em Swift.
 
-[Click here to change the language of this article to English.](README.md)
+[[Click here to change the language of this article to English.](README.md)]
 
 ## Introdução
 Redux é a implementação de um padrão arquitetural de software que prioriza o fluxo de dados unidirecional.
