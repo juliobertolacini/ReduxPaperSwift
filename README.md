@@ -35,13 +35,13 @@ Notice that the unidirectional flow happens when the View dispatches an Action. 
 - **Store:** It is one of the most important components of this implementation. It is what aggregates all the components mentioned above and makes the flow work. View dispatches a new Action to the Store. The Store then passes this Action to Reducer along with the current State and then receives the Reducer's new State back. The View is warned whenever a new State is created, this is possible by implementing the **Observer** design pattern that allows View to become a "subscriber" of the Store to be notified.
 
 ## Let's start
-My approach to begin to learn Redux is to build a sample application - a "Stone, Paper and Scissors" game - using a library called ReSwift that implements the concepts of this architecture in Swift.
+My approach to begin to learn Redux is to build a sample application - a "Rock, Paper and Scissors" game - using a library called ReSwift that implements the concepts of this architecture in Swift.
 
-We begin by sketching what the application should look like. For simplicity, the application should work on a single ViewController, containing 3 buttons at the bottom (Stone, Paper and Scissors), 1 message field at the top, and 2 placeholders to show when a player has already made his move and at the end to reveal the weapons of the players.
+We begin by sketching what the application should look like. For simplicity, the application should work on a single ViewController, containing 3 buttons at the bottom (Rock, Paper and Scissors), 1 message field at the top, and 2 placeholders to show when a player has already made his move and at the end to reveal the weapons of the players.
 
 ![initial_sketch](/ArticleImages/initial_sketch.png)
 
-To start the development I proposed a use case in which Player1 chooses **Scissors** and Player2 chooses **Stone**, resulting in Player2's victory. This flow would happen as follows:
+To start the development I proposed a use case in which Player1 chooses **Scissors** and Player2 chooses **Rock**, resulting in Player2's victory. This flow would happen as follows:
 
 ![use_case_sketch](/ArticleImages/use_case_sketch.png)
 
